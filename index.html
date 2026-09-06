@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rifa do Liquidificador</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="tag">RIFA • 50 NÚMEROS</span>
+        <h1>Concorra a um<br><strong>Liquidificador Arno</strong></h1>
+        <p>Escolha seu número e participe!</p>
+      </div>
+      <div class="price">R$ 5,00</div>
+    </section>
+
+    <section class="card">
+      <h2>Escolha seu número</h2>
+      <p class="hint">Os números em verde estão disponíveis. Clique para selecionar.</p>
+
+      <div id="numbers" class="numbers"></div>
+
+      <div class="legend">
+        <span><i class="available"></i> Disponível</span>
+        <span><i class="selected"></i> Selecionado</span>
+        <span><i class="reserved"></i> Reservado</span>
+      </div>
+    </section>
+
+    <section class="card form-card">
+      <h2>Finalizar escolha</h2>
+      <div class="selected-box">
+        Número escolhido: <strong id="chosen">Nenhum</strong>
+      </div>
+
+      <label>Seu nome</label>
+      <input id="name" type="text" placeholder="Digite seu nome">
+
+      <label>WhatsApp</label>
+      <input id="phone" type="tel" placeholder="(41) 99999-9999">
+
+      <button id="whatsappBtn">QUERO ESSE NÚMERO</button>
+      <p class="small">Ao clicar, seu pedido será enviado pelo WhatsApp para confirmação.</p>
+    </section>
+
+    <footer>Boa sorte! 🍀</footer>
+  </main>
+
+<script>
+const WHATSAPP = "5541999999999"; // TROQUE pelo seu número com DDI + DDD
+const reservedNumbers = []; // Ex.: [3, 7, 12] para marcar números já vendidos/reservados
+
+const numbersEl = document.getElementById("numbers");
+const chosenEl = document.getElementById("chosen");
+let selected = null;
+
+for (let i = 1; i <= 50; i++) {
+  const button = document.createElement("button");
+  button.className = "number";
+  button.textContent = String(i).padStart(2, "0");
+
+  if (reservedNumbers.includes(i)) {
+    button.classList.add("reserved");
+    button.disabled = true;
+  } else {
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".number.selected").forEach(el => el.classList.remove("selected"));
+      button.classList.add("selected");
+      selected = i;
+      chosenEl.textContent = String(i).padStart(2, "0");
+    });
+  }
+
+  numbersEl.appendChild(button);
+}
+
+document.getElementById("whatsappBtn").addEventListener("click", () => {
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+
+  if (!selected) {
+    alert("Escolha um número primeiro.");
+    return;
+  }
+  if (!name || !phone) {
+    alert("Preencha seu nome e WhatsApp.");
+    return;
+  }
+
+  const message =
+    `Olá! Quero participar da rifa do liquidificador Arno.%0A%0A` +
+    `Número escolhido: *${String(selected).padStart(2, "0")}*%0A` +
+    `Nome: ${encodeURIComponent(name)}%0A` +
+    `Meu WhatsApp: ${encodeURIComponent(phone)}%0A` +
+    `Valor: R$ 5,00`;
+
+  window.open(`https://wa.me/${WHATSAPP}?text=${message}`, "_blank");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f5efe5;color:#171717;min-height:100vh}
+.container{max-width:900px;margin:auto;padding:18px}
+.hero{background:linear-gradient(135deg,#b91515,#e42a1d);color:white;border-radius:22px;padding:28px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 10px 25px #0002}
+.tag{font-size:13px;font-weight:800;letter-spacing:1px}
+h1{font-size:clamp(30px,6vw,52px);line-height:.98;margin:12px 0}
+.hero p{font-size:18px}
+.price{background:#ffd21c;color:#171717;font-size:32px;font-weight:900;padding:18px 20px;border-radius:16px;white-space:nowrap}
+.card{background:white;border-radius:20px;padding:24px;margin-top:18px;box-shadow:0 5px 18px #00000012}
+h2{font-size:25px;margin-bottom:8px}
+.hint{color:#666;margin-bottom:20px}
+.numbers{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.number{border:0;border-radius:12px;background:#e8f7e9;color:#15803d;font-weight:900;font-size:19px;padding:15px 5px;cursor:pointer;transition:.15s}
+.number:hover{transform:translateY(-2px)}
+.number.selected{background:#ffd21c;color:#171717;box-shadow:0 0 0 3px #b91515}
+.number.reserved{background:#ddd;color:#888;text-decoration:line-through;cursor:not-allowed}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;color:#555;font-size:14px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px;vertical-align:-1px}
+.available{background:#e8f7e9}.selected{background:#ffd21c}.reserved{background:#ddd}
+.selected-box{background:#f7f3ec;border-radius:12px;padding:14px;margin:14px 0 18px;font-size:18px}
+label{display:block;font-weight:700;margin:12px 0 6px}
+input{width:100%;padding:14px;border:1px solid #ccc;border-radius:10px;font-size:16px}
+button#whatsappBtn{width:100%;margin-top:18px;border:0;border-radius:12px;padding:16px;background:#16a34a;color:white;font-weight:900;font-size:16px;cursor:pointer}
+.small{font-size:13px;color:#777;text-align:center;margin-top:10px}
+footer{text-align:center;padding:24px;color:#666}
+@media(max-width:520px){.hero{display:block}.price{display:inline-block;margin-top:18px}.numbers{grid-template-columns:repeat(5,1fr);gap:7px}.number{font-size:16px;padding:13px 2px}.card{padding:18px}}
